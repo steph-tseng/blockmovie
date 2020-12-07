@@ -13,6 +13,13 @@
   }
 }
 
+.body {
+  background-color: black;
+}
+/* @media only screen and (min-width: 400px) {
+  
+} */
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,3 +43,84 @@
     transform: rotate(360deg);
   }
 }
+
+.zoom li:hover {
+  transition: background-color 1s ease;
+  background-color: rgb(216, 215, 215);
+  transform: scale(1.2);
+}
+
+.movie_overview {
+  /* pointer-events: none; */
+  background-color: #282c34;
+  color: white;
+  height: 100%;
+  opacity: 0;
+  margin-top: 300px;
+  transition: 1s;
+}
+
+.hover-thing {
+  height: 382.5px;
+  z-index: 50;
+  overflow: scroll;
+}
+
+.hover-thing:hover .movie_overview {
+  opacity: 1;
+  margin-top: 0px;
+  z-index: 80;
+}
+
+.footer-text {
+  background-color: #fff !important;
+  z-index: 99;
+}
+
+.nav_link {
+  color: rgba(255, 255, 255, 0.692);
+}
+
+#dropdown-button {
+  background-color: #333b3f;
+  border: none;
+  color: #8a8d8f;
+}
+
+#dropdown-button:hover {
+  color: rgb(172, 172, 172);
+}
+
+.react-player {
+  aspect-ratio: 100 / (1280 / 720);
+}
+
+.video-info {
+  margin-top: 750px;
+  /* margin-left: 50vw; */
+}
+
+.round-badge {
+  position: absolute;
+  width: 60px;
+  line-height: 50px;
+  /* border-radius: 50%; */
+  text-align: center;
+  font-size: 16px;
+  border: 5px solid;
+  border-image: linear-gradient(
+      to right,
+      pink 40%,
+      pink 40%,
+      rgb(189, 103, 230) 99%,
+      lightblue 20%,
+      lightblue 40%
+    )
+    5;
+  background-color: white;
+  z-index: 100;
+}
+
+/* .pagination {
+  color: darkblue;
+} */
