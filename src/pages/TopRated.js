@@ -7,6 +7,7 @@ import MovieCard from "../components/MovieCard";
 import MovieCarousel from "../components/MovieCarousel";
 import PaginationBar from "../components/PaginationBar";
 // import useFetchData from "../components/useFetchData";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -26,7 +27,7 @@ const HomePage = () => {
     const fetchMovies = async () => {
       try {
         const res = await api.get(
-          `/movie/top_rated?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNum}`
+          `/movie/top_rated?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNum}`
         );
         setMovies(res.data.results);
         setTotalPageNum(res.data.total_pages);
