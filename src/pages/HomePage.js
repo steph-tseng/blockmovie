@@ -28,7 +28,7 @@ const HomePage = () => {
     const fetchMovies = async () => {
       try {
         const res = await api.get(
-          `/movie/popular?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNum}`
+          `/movie/popular?language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNum}`
         );
         setMovies(res.data.results);
         setTotalPageNum(res.data.total_pages);
