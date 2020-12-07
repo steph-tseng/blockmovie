@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, CarouselItem } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 
 const MovieCarousel = ({ movies }) => {
   // console.log(movies, "hi");

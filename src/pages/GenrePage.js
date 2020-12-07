@@ -30,7 +30,7 @@ const MovieDetails = () => {
       setLoading(true);
       try {
         const res = await api.get(
-          `/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&language=en-US&page=${pageNum}&with_genres=${params.id}`
+          `/discover/movie?sort_by=popularity.desc&language=en-US&page=${pageNum}&with_genres=${params.id}`
         );
         console.log("data", res.data);
         // console.log("genre", res.data.results);

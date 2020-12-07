@@ -5,7 +5,7 @@ import api from "../apiService";
 import ReactPlayer from "react-player";
 import { PacmanLoader } from "react-spinners";
 
-const API_KEY = "da56a28f70258600c442ac848facc1e8";
+const API_KEY = process.env.REACT_APP_API_KEY;
 // https://api.themoviedb.org/3/movie/550?api_key=da56a28f70258600c442ac848facc1e8&language=en-US
 
 const MovieDetails = () => {
@@ -28,20 +28,16 @@ const MovieDetails = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const movieRes = await api.get(
-          `/movie/${params.id}?api_key=${API_KEY}&language=en-US`
-        );
+        const movieRes = await api.get(`/movie/${params.id}?language=en-US`);
         console.log("movie", movieRes.data);
         setMovie(movieRes.data);
 
-        const videoResult = await api.get(
-          `/movie/${params.id}/videos?api_key=${API_KEY}`
-        );
+        const videoResult = await api.get(`/movie/${params.id}/videos`);
         console.log("videos", videoResult.data.results);
         setVideoInfo(videoResult.data.results[0]);
 
         const recsRes = await api.get(
-          `/movie/${params.id}/recommendations?api_key=${API_KEY}&language=en-US`
+          `/movie/${params.id}/recommendations?language=en-US`
         );
         console.log("recs", recsRes.data.results);
         setRecsList(recsRes.data.results);
@@ -97,7 +93,9 @@ const MovieDetails = () => {
                 />
               </div>
             ) : (
-              ""
+              <h1 className="justify-conent-center align-content-center">
+                No Trailer
+              </h1>
             )}
             <br />
             <Container>

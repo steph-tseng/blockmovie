@@ -1,29 +1,7 @@
 import React from "react";
 import { CardDeck, Card } from "react-bootstrap";
 
-const API_KEY = "da56a28f70258600c442ac848facc1e8";
-
-// let genreList = {
-//   28: "action",
-//   16: "animated",
-//   99: "documentary",
-//   18: "drama",
-//   10751: "family",
-//   14: "fantasy",
-//   36: "history",
-//   35: "comedy",
-//   10752: "war",
-//   80: "crime",
-//   10402: "music",
-//   9648: "mystery",
-//   10749: "romance",
-//   878: "sci fi",
-//   27: "horror",
-//   10770: "TV movie",
-//   53: "thriller",
-//   37: "western",
-//   12: "adventure",
-// };
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 let genreList = {
   genres: [

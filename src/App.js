@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+} from "react-router-dom";
 import PublicNavbar from "./components/PublicNavbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./pages/HomePage";
@@ -14,14 +20,13 @@ import GenrePage from "./pages/GenrePage";
 import QueryPage from "./pages/Query";
 // import Query from "./pages/Query";
 
-const API_KEY = "da56a28f70258600c442ac848facc1e8";
-
 function App() {
   const [loading, setLoading] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [query, setQuery] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [genreList, setGenreList] = useState([]);
+  const history = useHistory();
 
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
@@ -30,16 +35,18 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setQuery(searchInput);
-    setSearchInput("");
-    // history.push(`/query`);
+
+    // setSearchInput("");
   };
+
+  useEffect(() => {
+    history.push("/query");
+  }, [query, history]);
 
   useEffect(() => {
     const fetchGenreList = async () => {
       try {
-        const res = await api.get(
-          `/genre/movie/list?api_key=${API_KEY}&language=en-US`
-        );
+        const res = await api.get(`/genre/movie/list?language=en-US`);
         // console.log("genre", res.data.genres);
         setGenreList(res.data.genres);
         setErrorMsg("");
@@ -53,7 +60,7 @@ function App() {
 
   return (
     // <div style={{ backgroundColor: loading ? "#fff" : "#000" }}>
-    <Router>
+    <>
       <PublicNavbar
         loading={loading}
         searchInput={searchInput}
@@ -61,17 +68,20 @@ function App() {
         handleSubmit={handleSubmit}
         genreList={genreList}
       />
-      {query ? <QueryPage query={searchInput} /> : ""}
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/top_rated" component={TopRated} />
-        <Route exact path="/query" component={QueryPage} />
+        <Route
+          exact
+          path="/query"
+          render={(props) => <QueryPage {...props} query={query} />}
+        />
         <Route exact path="/showing_now" component={ShowingNow} />
         <Route exact path="/upcoming" component={UpcomingPage} />
         <Route exact path="/movies/:id" component={MovieDetails} />
         <Route exact path="/genres/:id" component={GenrePage} />
       </Switch>
-    </Router>
+    </>
     // </div>
   );
 }

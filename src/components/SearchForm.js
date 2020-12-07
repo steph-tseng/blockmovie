@@ -27,7 +27,7 @@ const SearchForm = ({
             Searching..
           </Button>
         ) : (
-          <Button href="/query" variant="warning" type="submit">
+          <Button variant="warning" type="submit">
             Search
           </Button>
         )}
