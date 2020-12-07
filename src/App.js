@@ -30,6 +30,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setQuery(searchInput);
+    setSearchInput("");
     // history.push(`/query`);
   };
 
